@@ -169,6 +169,7 @@ impl<D, E, V> Importer<D, E, V> {
         )
     }
 
+    // 给别人用的
     pub fn subscribe(&self) -> broadcast::Receiver<ImporterResult> {
         self.broadcast.subscribe()
     }

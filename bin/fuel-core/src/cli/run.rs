@@ -516,6 +516,10 @@ pub async fn exec(command: Command) -> anyhow::Result<()> {
 
     // Genesis could take a long time depending on the snapshot size. Start needs to be
     // interruptible by the shutdown_signal
+    // tokio::select! 是 Rust 编程语言中 Tokio 异步运行时库的一个宏。这个宏用于同时等待多个异步操作，并在其中任何一个完成时执行相应的代码。它的主要作用是:
+    // 并发等待多个异步任务
+    // 只处理最先完成的任务
+    // 取消其他未完成的任务
     tokio::select! {
         result = service.start_and_await() => {
             result?;
